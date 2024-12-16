@@ -1,15 +1,31 @@
-# Elysia with Bun runtime
+# Sample repo for dd-trace problems with bun
+
+This repo shows problems with dd-trace and bun using `fetch`, trying to access a server that is not being listened on produces
+
+```
+[07:12:33.795] ERROR (10977): error during upstream request {}
+    err: {
+      "type": "TypeError",
+      "message": "|this| is not an object",
+      "stack":
+          TypeError: |this| is not an object
+              at reject (native:1:11)
+              at processTicksAndRejections (native:7:39)
+    }
+```
 
 ## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
 
-## Development
-To start the development server run:
+1. Install dependencies
 ```bash
-bun run dev
+bun install
 ```
+2. Run the app
+```bash
+bun dev
+```
+3. send a request to http://localhost:3000/
+4. see the error in the console
 
-Open http://localhost:3000/ with your browser to see the result.
+Note that the problem starts happening as soon as you add 
+`dd-trace`.
